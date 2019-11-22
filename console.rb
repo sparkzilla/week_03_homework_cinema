@@ -5,7 +5,7 @@ require_relative( 'models/tickets' )
 require( 'pry-byebug' )
 
 # Tickets.delete_all()
-# Films.delete_all()
+Film.delete_all()
 Customer.delete_all()
 
 customer1 = Customer.new({ 'name' => 'Mark', 'funds' => 50 })
