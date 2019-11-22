@@ -4,7 +4,7 @@ require_relative( 'models/tickets' )
 
 require( 'pry-byebug' )
 
-# Tickets.delete_all()
+Ticket.delete_all()
 Film.delete_all()
 Customer.delete_all()
 
