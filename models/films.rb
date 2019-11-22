@@ -18,10 +18,11 @@ class Film
     film = SqlRunner.run(sql, values)[0]
     @id = film['id'].to_i()
   end
-#
-#   def self.delete_all()
-#     sql = "DELETE FROM customers"
-#     values = []
-#     SqlRunner.run(sql, values)
-#   end
+
+  def self.delete_all()
+    sql = "DELETE FROM films"
+    SqlRunner.run(sql)
+  end
+
+
 end
