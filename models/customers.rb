@@ -30,8 +30,7 @@ class Customer
     SqlRunner.run(sql, values)
   end
 
-  def
-    films
+  def films
       sql ="SELECT films.*
     FROM films
     INNER JOIN tickets
@@ -42,4 +41,15 @@ class Customer
       return result
   end
 
+  def buy_ticket(film)
+    #find price for a particular film
+    sql="SELECT price
+    FROM films WHERE title = $1;"
+    values = [film]
+    price = SqlRunner.run(sql, values)[0]
+    price = price['price'].to_i()
+    p price
+    #buy_ticket (add ticket to tickets db)
+    #reduce funds by price
+  end
 end
