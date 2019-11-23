@@ -75,8 +75,5 @@ class Customer
       #save reduced funds to db
 
 
-
-    #buy_ticket (add ticket to tickets db)
-
   end
 end
