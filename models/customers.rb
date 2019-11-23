@@ -67,11 +67,10 @@ class Customer
     #reduce funds by price
     if (enough_funds_to_buy_ticket(price) != false)
       reduce_funds(price)
-      p @funds
+
       #create new ticket and update db
       ticket = Ticket.new({ 'customer_id' => @id, 'film_id' => film_id })
       ticket.save()
-      p ticket
 
       #save reduced funds to db
       update()
@@ -88,9 +87,7 @@ class Customer
   ON tickets.film_id = films.id WHERE customer_id = $1;"
   values = [@id]
   result = SqlRunner.run(sql, values)[0]
-  p result
   ticket_count = result['count'].to_i()
-  p ticket_count
   end
 
 end
