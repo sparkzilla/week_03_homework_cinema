@@ -88,6 +88,7 @@ class Customer
   values = [@id]
   result = SqlRunner.run(sql, values)[0]
   ticket_count = result['count'].to_i()
+  return ticket_count
   end
 
 end
