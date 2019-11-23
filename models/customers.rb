@@ -1,4 +1,6 @@
 require_relative("../db/sqlrunner")
+require_relative('tickets')
+require_relative('films')
 
 class Customer
 
@@ -42,14 +44,19 @@ class Customer
   end
 
   def buy_ticket(film)
-    #find price for a particular film
-    sql="SELECT price
+    #find price and id of a particular film
+    sql="SELECT price, id
     FROM films WHERE title = $1;"
     values = [film]
-    price = SqlRunner.run(sql, values)[0]
-    price = price['price'].to_i()
+    result = SqlRunner.run(sql, values)[0]
+    price = result['price'].to_i()
+    film_id = result['id'].to_i()
+    p film_id
     p price
     #buy_ticket (add ticket to tickets db)
+    ticket = Ticket.new({ 'customer_id' => @id, 'film_id' => film_id })
+    p ticket
+    ticket.save()
     #reduce funds by price
   end
 end
