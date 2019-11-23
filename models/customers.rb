@@ -49,6 +49,7 @@ class Customer
     else
       false
     end
+  end
 
   def reduce_funds(amount)
       return  @funds -= amount
@@ -64,19 +65,19 @@ class Customer
     film_id = result['id'].to_i()
 
     #reduce funds by price
-      if (reduce_funds(price)) != false
-        reduce_f
-        p @funds
-        #create new ticket and update db
-        ticket = Ticket.new({ 'customer_id' => @id, 'film_id' => film_id })
-        ticket.save()
-        p ticket
-      else
-
+    if (enough_funds_to_buy_ticket(price) != false)
+      reduce_funds(price)
+      p @funds
+      #create new ticket and update db
+      ticket = Ticket.new({ 'customer_id' => @id, 'film_id' => film_id })
+      ticket.save()
+      p ticket
 
       #save reduced funds to db
-
-      p "The customer doe not have enough funds."
+      update()
+    else
+      p "The customer does not have enough funds to buy a ticket"
     end
   end
+
 end
