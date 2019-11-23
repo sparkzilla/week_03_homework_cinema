@@ -43,6 +43,16 @@ class Customer
       return result
   end
 
+  def reduce_funds(amount)
+    p "starting funds #{@funds}"
+    if (@funds - amount > 0)
+        @funds -= amount
+        p "ending funds #{@funds}"
+    else
+      p "The customer does not have enough funds."
+    end
+  end
+
   def buy_ticket(film)
     #find price and id of a particular film
     sql="SELECT price, id
@@ -51,12 +61,22 @@ class Customer
     result = SqlRunner.run(sql, values)[0]
     price = result['price'].to_i()
     film_id = result['id'].to_i()
-    p film_id
-    p price
-    #buy_ticket (add ticket to tickets db)
-    ticket = Ticket.new({ 'customer_id' => @id, 'film_id' => film_id })
-    p ticket
-    ticket.save()
+    # p film_id
+    # p price
+
     #reduce funds by price
+
+      #create new ticket and update db
+
+      # ticket = Ticket.new({ 'customer_id' => @id, 'film_id' => film_id })
+      # p ticket
+      # ticket.save()
+
+      #save reduced funds to db
+
+
+
+    #buy_ticket (add ticket to tickets db)
+
   end
 end
