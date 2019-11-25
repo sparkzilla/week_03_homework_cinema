@@ -43,7 +43,7 @@ class Film
   end
 
   def customers_count
-    return = customers.count()
+    return customers.count()
   end
 
 end
