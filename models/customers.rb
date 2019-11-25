@@ -82,9 +82,7 @@ class Customer
   def ticket_count
     #use sql COUNT statement
     sql ="SELECT COUNT (*)
-  FROM films
-  INNER JOIN tickets
-  ON tickets.film_id = films.id WHERE customer_id = $1;"
+  FROM tickets WHERE customer_id = $1;"
   values = [@id]
   result = SqlRunner.run(sql, values)[0]
   ticket_count = result['count'].to_i()
